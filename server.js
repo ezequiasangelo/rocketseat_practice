@@ -25,19 +25,37 @@ server.post('/videos', (request, reply) => {
     return reply.status(201).send()
 } )
 
-server.get('/videos', () => {
-    const videos = database.list()
+server.get('/videos', (request) => {
+    const search = request.query.search
 
-    
+
+    const videos = database.list(search)
+
     return videos
 } )
 
-server.put('/videos/:id', () => {
-    return 'Tudo node.js'
+server.put('/videos/:id', (request, reply) => {
+    const videoId = request.params.id
+    const {title, description, duracion} = request.body
+
+    database.update(videoId, {
+        title,
+        description,
+        duracion,
+    })
+
+    return reply.status(204).send()
+
 } )
 
-server.delete('/videos/:id', () => {
-    return 'Hello node.js?'
+server.delete('/videos/:id', (request, reply) => {
+    const videoId = request.params.id
+
+
+    database.update(videoId)
+    
+
+    return reply.status(204).send()
 } )
 
 server.listen({
