@@ -1,10 +1,10 @@
-import { sql } from './db.js'
+import { db } from './db.js'
 
-sql`
-CREATE TABLE videos(
-    title       TEXTE,
-    description TEXTE,
-    duracion    INTEGER 
+db`
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE
 ):
 ` .then(() => {
     console.log('tabela criada!')
