@@ -1,11 +1,13 @@
-import { db } from './db.js'
+import { sql } from './db.js';
 
-db`
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE
-):
-` .then(() => {
-    console.log('tabela criada!')
-})
+sql`
+    CREATE TABLE VideosFoi (
+        title TEXT,
+        description TEXT NOT NULL,
+        duracion TEXT NOT NULL UNIQUE
+    );
+`.then(() => {
+    console.log('Tabela criada!');
+}).catch(err => {
+    console.error('Erro ao criar tabela:', err);
+});

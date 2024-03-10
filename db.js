@@ -1,10 +1,11 @@
-import postgres from 'postgres'
+import postgres from 'postgres';
+import dotenv from 'dotenv';
+dotenv.config();
 
-// const postgres = require('postgres');
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-export const db = postgres({
+export const sql = postgres({
   host: PGHOST,
   database: PGDATABASE,
   username: PGUSER,
@@ -15,3 +16,4 @@ export const db = postgres({
     options: `project=${ENDPOINT_ID}`,
   },
 });
+
